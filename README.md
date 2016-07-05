@@ -4,7 +4,7 @@ The official Docker image for [Lux](https://github.com/postlight/lux).
 
 ## Usage
 
-Create a Dockerfile in the root of you [Lux](https://github.com/postlight/lux) project directory.
+Create a Dockerfile in the root of your [Lux](https://github.com/postlight/lux) project directory.
 
 ```dockerfile
 FROM zacharygolba/lux-framework:latest-onbuild
@@ -12,9 +12,9 @@ FROM zacharygolba/lux-framework:latest-onbuild
 
 You can then build and run the Docker image:
 
-```console
-$ docker build -t my-lux-app .
-$ docker run -it --rm --name my-running-app my-lux-app
+```bash
+docker build -t my-lux-app .
+docker run -it --rm --name my-running-app my-lux-app
 ```
 
 ## Image Variants
@@ -44,7 +44,9 @@ CMD ["lux", "serve"]
 
 ### `lux-framework:onbuild`
 
-This image contains all of the logic to get a standard [Lux](https://github.com/postlight/lux) project dockerized with little to no effort. If all you need to do in your Dockerfile is get your application up and running, you should use this image. However, since the `ONBUILD` triggers can be unpredictable, it is recommended that you use the basic `lux-framework:<version>` image if you need to run additional commands to get your application environment running.
+This image contains all of the logic to get a standard [Lux](https://github.com/postlight/lux) project dockerized with little to no effort. If all you need to do in your Dockerfile is get your application up and running, you should use this image.
+
+Since the `ONBUILD` triggers can be unpredictable, it is recommended that you use the basic `lux-framework:<version>` image if you need to run additional commands to get your application environment running.
 
 #### Example Dockerfile:
 
