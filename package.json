@@ -1,0 +1,27 @@
+{
+  "name": "docker-lux",
+  "version": "1.0.0",
+  "description": "The official Docker image for Lux 🐳 🔆",
+  "main": "index.js",
+  "scripts": {
+    "build": "node scripts/build.js --use_strict",
+    "generate": "node scripts/generate.js --use_strict",
+    "push": "node scripts/push.js --use_strict",
+    "test": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/postlight/docker-lux.git"
+  },
+  "author": "Zachary Golba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/postlight/docker-lux/issues"
+  },
+  "homepage": "https://github.com/postlight/docker-lux#readme",
+  "dependencies": {
+    "common-tags": "^1.4.0",
+    "shelljs": "^0.7.6",
+    "yargs": "^6.6.0"
+  }
+}
