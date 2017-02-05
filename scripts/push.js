@@ -5,14 +5,14 @@ const { exec, exit } = require('shelljs');
 const { latest, version } = require('./utils/argv');
 const getDockerFiles = require('./utils/get-dockerfiles');
 
-const TAG_PREFIX = 'zacharygolba/lux-framework:';
+const NAME = 'zacharygolba/lux-framework';
 
 let code = 0;
 
-for (const file of getDockerFiles(version)) {
-  const tag = TAG_PREFIX + dirname(file).split(sep).join('-');
+for (const dir of getDockerFiles(version).map(dirname)) {
+  const tag = `${NAME}:${dir.split(sep).join('-')}`;
 
-  ({ code } = exec(`echo ${file} ${tag}`));
+  ({ code } = exec(`cd ${dir} && docker push ${tag}`));
 
   if (code !== 0) {
     break;
@@ -20,7 +20,7 @@ for (const file of getDockerFiles(version)) {
 }
 
 if (latest) {
-  ({ code } = exec(`echo ${version} ${TAG_PREFIX + 'latest'}`));
+  ({ code } = exec(`cd ${version} && docker push ${NAME}:latest`));
 }
 
 exit(code);
