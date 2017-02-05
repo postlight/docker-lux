@@ -11,20 +11,18 @@ let code = 0;
 const dirs = getDockerFiles(version).map(dirname);
 
 for (const dir of dirs) {
-  const tag = `${NAME}:${dir.split(sep).join('-')}`;
+  let tag = `${NAME}:${dir.split(sep).join('-')}`;
 
-  ({ code } = exec(`cd ${dir} && docker push ${tag}`));
+  ({ code } = exec(`docker push ${tag}`));
 
   if (code !== 0) {
     break;
   }
-}
 
-if (latest && code === 0) {
-  for (const dir of dirs) {
-    const tag = `${NAME}:${['latest', ...dir.split(sep).slice(1)].join('-')}`;
+  if (latest) {
+    tag = tag.replace(version, 'latest');
 
-    ({ code } = exec(`cd ${dir} && docker push ${tag}`));
+    ({ code } = exec(`docker push ${tag}`));
 
     if (code !== 0) {
       break;

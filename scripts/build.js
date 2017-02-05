@@ -1,17 +1,24 @@
-const { dirname } = require('path');
+const { sep, dirname } = require('path');
 
 const { exec, exit } = require('shelljs');
 
-const { version } = require('./utils/argv');
+const { latest, version } = require('./utils/argv');
 const getDockerFiles = require('./utils/get-dockerfiles');
 
+const NAME = 'zacharygolba/lux-framework';
+
 let code = 0;
-const dirs = getDockerFiles(version)
-  .map(dirname)
-  .filter(dir => !dir.endsWith('onbuild'));
+const dirs = getDockerFiles(version).map(dirname);
 
 for (const dir of dirs) {
-  ({ code } = exec(`docker build --no-cache ${dir}`));
+  const tag = `${NAME}:${dir.split(sep).join('-')}`;
+  let tags = `-t ${tag}`;
+
+  if (latest) {
+    tags += ` -t ${tag.replace(version, 'latest')}`;
+  }
+
+  ({ code } = exec(`docker build ${tags} --no-cache ${dir}`));
 
   if (code !== 0) {
     break;
