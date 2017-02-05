@@ -1,4 +1,4 @@
-FROM zacharygolba/lux-framework:1.1:node-7
+FROM zacharygolba/lux-framework:1.1-node-7
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

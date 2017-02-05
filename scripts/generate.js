@@ -38,7 +38,7 @@ const alpine = base => stripIndent`
 
 const onbuild = base => stripIndent`
   FROM zacharygolba/lux-framework:${version + (
-    base === 7 ? `:node-${base}` : ''
+    base === 7 ? `-node-${base}` : ''
   )}
 
   RUN mkdir -p /usr/src/app
