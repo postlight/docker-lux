@@ -1,7 +1,5 @@
 # docker-lux
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/postlight/docker-lux.svg)](https://greenkeeper.io/)
-
 The official Docker image for [Lux](https://github.com/postlight/lux).
 
 ## Usage
